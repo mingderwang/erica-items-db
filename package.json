@@ -1,11 +1,13 @@
 {
-  "name": "pkg-name",
-  "version": "0.0.0",
+  "name": "@muzamint/erica-items-db",
+  "version": "0.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "description": "",
   "scripts": {
     "build": "bun run build.mjs",
+    "dev": "bun --watch run ./src/index.ts",
+    "test": "bun --watch test",
     "prepublishOnly": "bun run build"
   },
   "files": [
@@ -26,5 +28,11 @@
     "bun-plugin-dts": "^0.2.1",
     "bun-types": "^1.0.7",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@elysiajs/cors": "^0.7.2",
+    "@elysiajs/swagger": "^0.7.4",
+    "elysia": "^0.7.30",
+    "viem": "^1.19.13"
   }
 }

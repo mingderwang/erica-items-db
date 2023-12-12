@@ -1,0 +1,6 @@
+{
+  "type": "module",
+  "types": "../_types/items/index.d.ts",
+  "module": "../_esm/items/index.js",
+  "main": "../_cjs/items/index.js"
+}
