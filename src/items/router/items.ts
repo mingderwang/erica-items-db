@@ -24,7 +24,7 @@ export const router  = new Elysia()
     .get('/ping', () => 'pong')
     .group("api/v1/chainlist", app => {
         return app
-        .get('/', async () => await ItemService.findAll() )
+        .get('/', async () => await ItemService.findAll())
         .post('/', async ({ body, set }) => {
             const newItem: Item = await ItemService.create(body as BaseItem);
             set.status = 200
@@ -42,6 +42,13 @@ export const router  = new Elysia()
               return { success: false };
             }
           })
+        .get("/:id", async ({ params }) => {
+            try {
+              return  await ItemService.find(parseInt(params.id));
+            } catch (e) {
+              return { success: false };
+            }
+        })
     })
     .get('/', () => {
 		throw new CustomError('Hello Error');
