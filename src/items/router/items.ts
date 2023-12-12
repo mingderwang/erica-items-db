@@ -22,7 +22,7 @@ export const router  = new Elysia()
         return new Response(error.toString())
     })
     .get('/ping', () => 'pong')
-    .group("/items", app => {
+    .group("api/v1/chainlist", app => {
         return app
         .get('/', async () => await ItemService.findAll() )
         .post('/', async ({ body, set }) => {

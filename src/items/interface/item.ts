@@ -1,10 +1,8 @@
 // src/items/item.interface.ts
+import type { Chain } from 'viem/chains'
 
 export interface BaseItem {
-  name: string;
-  price: number;
-  description: string;
-  image: string;
+  meta: Chain;
 }
 
 export interface Item extends BaseItem {

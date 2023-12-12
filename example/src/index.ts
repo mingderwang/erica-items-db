@@ -1,4 +1,3 @@
-console.log("Hello via Bun!");
 import { router } from '@muzamint/erica-items-db'
 
 export default {
