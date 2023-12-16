@@ -1,7 +1,7 @@
 // src/items/items.router.ts
 
 import { cors } from '@elysiajs/cors'
-//import { swagger } from '@elysiajs/swagger'
+import { swagger } from '@elysiajs/swagger'
 
 // interfaces
 
@@ -16,6 +16,7 @@ class CustomError extends Error {
 }
 
 export const router  = new Elysia()
+    .use(swagger())
     .use(cors()) // <-- add a specific IP and service, or use jwt/auth
     .onError(({ code, error }) => {
         return new Response(error.toString())
