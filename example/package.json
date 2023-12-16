@@ -16,6 +16,6 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@muzamint/erica-items-db": "latest"
+    "@muzamint/erica-items-db": "^0.2.4"
   }
 }
