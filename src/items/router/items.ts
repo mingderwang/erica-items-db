@@ -1,13 +1,13 @@
 // src/items/items.router.ts
 
-import { cors } from '@elysiajs/cors'
+//import { cors } from '@elysiajs/cors'
 import { swagger } from '@elysiajs/swagger'
 
 // interfaces
 
 import * as ItemService from "../service/items";
 import { BaseItem, Item } from "../interface/item";
-import { Elysia } from "elysia";
+import { Elysia, t } from "elysia";
 
 class CustomError extends Error {
     constructor(public message: string) {
@@ -17,7 +17,7 @@ class CustomError extends Error {
 
 export const router  = new Elysia()
     .use(swagger())
-    .use(cors())
+ //   .use(cors()) // <-- add a specific IP and service, or use jwt/auth
     .onError(({ code, error }) => {
         return new Response(error.toString())
     })
@@ -49,9 +49,31 @@ export const router  = new Elysia()
               return { success: false };
             }
         })
+        .get("/search/:word", async ({ params: { word }, query: { testnet } }) => {
+          try {
+            return await ItemService.search(word,testnet);
+          } catch (e) {
+            return { success: false };
+          }
+        }, {
+          params: t.Object({
+            word: t.String()
+          }),
+          query: t.Object({
+              testnet: t.Optional(t.String())
+          },
+          {
+            /**
+             * @default false
+             * Accept additional properties
+             * that not specified in schema
+             * but still match the type
+             */
+            additionalProperties: true
+          })})
     })
     .get('/', () => {
-		throw new CustomError('Hello Error');
-	})
+		  throw new CustomError('Hello Error, use /swagger to see all APIs');
+    })
     
 

@@ -55,3 +55,9 @@ export const remove = async (id: number): Promise<null | void> => {
   delete items[id];
 };
 
+export const search = async (word: string, testnet: string | undefined): Promise<Item[]> => {
+  console.log(word)
+  console.log(testnet)
+  return [];
+};
+
